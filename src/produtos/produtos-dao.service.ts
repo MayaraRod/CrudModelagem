@@ -23,6 +23,7 @@ export class ProdutosDaoService {
     constructor(
         private readonly database: DatabaseService,
     ) {
+         // this.produtos.sync({ force: true });
         this.banco.authenticate()
             .then(() => {
                 console.log('Conexão estabelecida.');
@@ -44,16 +45,16 @@ export class ProdutosDaoService {
         });
     }
 
-    public update(produtos: Produtos, descri: string) {
+    public update(produtos: Produtos, identificador: string) {
         this.produtos.update(
             {
                 nome: produtos.getNome(),
                 descricao: produtos.getDescricao(),
-                estoque: produtos.getQuantidadeEstoque(),
+                quantidadeEstoque: produtos.getQuantidadeEstoque(),
             },
             {
                 where: {
-                    descricao: descri,
+                    id: identificador,
                 }
             }).then(() => {
                 console.log('Atualização foi executada com sucesso');
@@ -61,17 +62,18 @@ export class ProdutosDaoService {
     }
 
     public set(produtos: Produtos) {
+
         this.produtos.create({
             nome: produtos.getNome(),
             descricao: produtos.getDescricao(),
-            estoque: produtos.getQuantidadeEstoque(),
+            quantidadeEstoque: produtos.getQuantidadeEstoque(),
         });
     }
 
-    public delete(desci: string) {
+    public delete(identificador: string) {
         this.produtos.destroy({
             where: {
-                descricao: desci,
+                id: identificador,
             }
         }).then(() => {
             console.log('item foi excluido com sucesso');

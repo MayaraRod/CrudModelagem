@@ -5,7 +5,7 @@ import { Sequelize } from 'sequelize';
 export class DatabaseService {
 
     public conectar(): any {
-        return new Sequelize('crud_estoque', 'root', ' ', {
+        return new Sequelize('crud_estoque', 'root', '', {
             dialect: 'mysql',
         });
     }

@@ -1,11 +1,12 @@
 import { Table, Column, Model } from 'sequelize-typescript';
 
 export class Produtos {
+
     private nome: string;
     private descricao: string;
     private quantidadeEstoque: number;
 
-    getNome():string {
+    getNome(): string {
         return this.nome;
     }
     setNome(nome: string) {
@@ -25,5 +26,4 @@ export class Produtos {
     setQuantidadeEstoque(quantidadeEstoque: number) {
         this.quantidadeEstoque = quantidadeEstoque;
     }
-
 }
